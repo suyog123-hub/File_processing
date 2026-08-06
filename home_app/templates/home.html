@@ -1,0 +1,83 @@
+<!-- home_app/templates/home_app/home.html -->
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="container">
+        <span class="badge">Welcome to MySite</span>
+        <h1>Build Something <span class="gradient-text">Amazing</span></h1>
+        <p>Clean, modern landing page built with Bootstrap. Perfect for startups, products, or personal projects.</p>
+        <a href="#" class="btn btn-light me-2">Get Started</a>
+        <a href="#" class="btn btn-outline-light">Learn More</a>
+    </div>
+</section>
+
+<!-- ===== CARDS SECTION ===== -->
+<section class="cards-section">
+    <div class="container">
+        <div class="section-head">
+            <span class="eyebrow">Our Features</span>
+            <h2>Why Choose Us</h2>
+            <p class="subtitle">Simple, fast, and reliable — everything you need to get started.</p>
+            <span class="rule"></span>
+        </div>
+
+        <div class="row g-4">
+            <!-- Card 1 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{% url 'remove_bg' %}">
+                        <div class="card-icon"><i class="fas fa-bolt"></i></div>
+                        <h5 class="card-title">remove background</h5>
+                        <p class="card-text">Optimized for speed and performance. Built with modern tools.</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h5 class="card-title">Secure</h5>
+                        <p class="card-text">Your data is safe with best-in-class security practices.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-code"></i></div>
+                        <h5 class="card-title">Developer Friendly</h5>
+                        <p class="card-text">Clean code, API-first design, and easy to customize.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-md-3 col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-icon"><i class="fas fa-headset"></i></div>
+                        <h5 class="card-title">24/7 Support</h5>
+                        <p class="card-text">Dedicated support team ready to help you anytime.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<br><br><br><br>
+
+{% endblock content %}
