@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse 
 from django.core.files.base import ContentFile
 from .models import Image
 from rembg import remove
@@ -15,15 +15,11 @@ def remove_bg(request):
     
     if request.method == 'POST' and request.FILES.get('image'):
         uploaded_image = request.FILES['image']
-        
         try:
-            # ✅ Link image to the current user
             image = Image.objects.create(
-                user=request.user,  # ← Add user
+                user=request.user,  
                 original=uploaded_image
             )
-            
-            # Process image...
             input_img = PILImage.open(image.original.path)
             output_img = remove(input_img)
             
@@ -35,10 +31,8 @@ def remove_bg(request):
                 f"no_bg_{image.id}.png",
                 ContentFile(img_bytes.read())
             )
-            
             messages.success(request, 'Background removed successfully!')
             return redirect('result', pk=image.id)
-            
         except Exception as e:
             messages.error(request, f'Error: {str(e)}')
             return redirect('remove_bg')
@@ -47,17 +41,10 @@ def remove_bg(request):
 
 @login_required(login_url='login')
 def result(request, pk):
-    """Show result page - only if user owns the image"""
-    
-    # ✅ Get image and check ownership
     image = get_object_or_404(Image, pk=pk)
-    
-    # 🛡️ Check if the current user owns this image
     if image.user != request.user:
         messages.error(request, "You don't have permission to view this image.")
         return redirect('remove_bg')
-        # OR return HttpResponseForbidden("You don't own this image")
-    
     return render(request, 'result.html', {'image': image})
 
 @login_required(login_url='login')
