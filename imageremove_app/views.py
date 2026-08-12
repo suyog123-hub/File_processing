@@ -24,7 +24,7 @@ def remove_bg(request):
             output_img = remove(input_img)
             
             img_bytes = io.BytesIO()
-            output_img.save(img_bytes, format='PNG')
+            output_img.save(img_bytes,format='PNG')
             img_bytes.seek(0)
             
             image.processed.save(
